@@ -1,0 +1,25 @@
+name: "main_web"
+title: "Lawrence Li"
+domain: lawrencexli.github.io      # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
+url: https://lawrencexli.github.io/DataVisualization/  # the base hostname and protocol for your site, e.g. http://example.com
+baseurl: _site/      # place folder name if the site is served in a subfolder
+description: |
+  Main Website
+output_dir: "_site"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Past Visualizations"
+      href: about.html
+    - text: "US Labor Economy Study"
+      href: data.html
+    - text: "Github Page"
+      href: https://github.com/lawrencexli/
+    - text: "LinkedIn Page"
+      href: https://www.linkedin.com/in/lawrence-li-4b2018208/
+  logo:
+    image: resources/logo.jpg
+output: 
+    distill::distill_article:
+      theme: styles.css

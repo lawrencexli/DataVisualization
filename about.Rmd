@@ -1,0 +1,157 @@
+---
+title: "My Past Course Visualizations"
+description: |
+  Here are all my data visualizations from the past.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## My Generative Artworks
+
+![](resources/Art1.jpg){width="32.8%"} ![](resources/Art2.jpg){width="32.8%"} ![](resources/Art3.jpg){width="32.8%"}
+
+**Left:** Bucknell - Orange and Blue Planets
+
+**Middle:** The Phoenix Branches
+
+**Right:** The Waves
+
+```{r, echo=FALSE}
+library(vcd)
+library(ggalluvial)
+library(ggplot2)
+data(Arthritis)
+Arthritis = Arthritis[complete.cases(Arthritis), ]
+AgeType = cut(Arthritis $ Age, 
+                   breaks = c(quantile(Arthritis $ Age, 0),
+                   quantile(Arthritis $ Age, 1/3), 
+                   quantile(Arthritis $ Age, 2/3),
+                   quantile(Arthritis $ Age, 1)),
+                   include.lowest = TRUE,
+                   labels = c("young","medium","old"))
+Arthritis $ AgeType = AgeType
+```
+
+## Shiny App
+
+Check out the interactive plot showing the basics of confidence levels and intervals here!
+
+
+
+<center>
+
+<iframe src ="https://rconnect.bucknell.edu/content/68ed495d-b45e-4329-8aec-f45d272722bb"
+  style="border: none; width: 100%; height: 800px;"/>
+</iframe>
+
+</center>
+
+
+## Arthritis Treatments Visualizations
+
+##### The following three alluvial graphs used the Arthritis Treatment Data from Koch & Edwards (1988) from a double-blind clinical trial investigating a new treatment for rheumatoid arthritis. We separated the age into three groups: young, medium, and old based on the one thirds quantile of the age provided by the data.
+
+```{r, echo=FALSE}
+# We specify axis1 and axis2 as 2 axes for left and right side. 
+# Take note that for this example the y axis is not specified.
+ggplot(data = Arthritis, aes(axis1 = Treatment, axis2 = Improved)) +
+  
+  # Call geom_alluvium and specify what variable is used for categorizing color.
+  geom_alluvium(aes(fill = Sex), width = 1/12) +
+  
+  # Create a shape and label axis1 and axis2 for aesthetics.
+  # Note that \n is the new line symbol
+  geom_stratum(width = 1/12, fill = "darkblue", color = "grey") +
+  geom_label(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("Treatment \n factor", "Improvement \n outcome"), 
+                   expand = c(.05, .05)) +
+  
+  # Label the y-axis. 
+  ylab("Cumulative Observations") +
+  
+  # Make a title
+  ggtitle("Gender distribution by improvement outcomes and treatment factors")
+```
+
+In the first graph, the total height of the plot (the y-axis) reflects the cumulative quantity of the 84 observations. It shows that regarding male or female group, how many of them that received placebo or treatments were with marked improvements, some improvements, or none improvements. 
+
+```{r}
+# We specify axis1 and axis2 as 2 axes for left and right side. 
+# Take note that for this example the y axis is not specified.
+ggplot(data = Arthritis, aes(axis1 = Treatment, axis2 = Improved)) +
+  
+  # Call geom_alluvium and specify what variable is used for categorizing color.
+  geom_alluvium(aes(fill = Improved), width = 1/12) +
+  
+  # Create a shape and label axis1 and axis2 for aesthetics.
+  # Note that \n is the new line symbol
+  geom_stratum(alpha = 0, width = 1/12) +
+  geom_label(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("Treatment \n factor", "Improvement \n outcome"), 
+                   expand = c(.05, .05)) +
+  
+  # Label the y-axis. 
+  ylab("Cumulative Observations") +
+  
+  labs(fill = "Improvement outcomes") +
+  
+  # Make a title
+  ggtitle("Improvement outcomes distribution by treatment factors")
+```
+
+Unlike the first graph, the second graph does not include any gender factors. It simply shows how many people who received placebo or treatments were with marked improvements, some improvements, or none improvements. 
+
+```{r}
+ggplot(data = Arthritis, aes(axis1 = Treatment, axis2 = AgeType, 
+                             axis3 = Improved)) +
+  geom_alluvium(aes(fill = Sex), width = 1/6) +
+  geom_stratum(width = 1/6, fill = 'peachpuff', color = "black") +
+  geom_label(stat = "stratum", aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("Treatment \n factor", "Age Type", 
+                              "Improvement \n outcome"), 
+                   expand = c(.05, .05)) +
+  ylab("Cumulative Observations") +
+  labs(fill = "Gender") +
+  ggtitle("Gender by treatment factors, age type, and improvement outcomes")
+```
+
+The third graph becomes a little bit more sophisticated. This shows that regarding male or female group, how many of them with placebo or treatments and certain age type were with marked improvements, some improvements, or none improvements. 
+
+## My Custom Visualizations
+
+##### The first one is a scatterplot of pulse rate of student versus height of students, with observations colored by smoking frequency and the shape determined by exercise frequency. The graph is based on the Student Survey data containing the responses of 237 Statistics I students at the University of Adelaide to a number of questions grearding their smoking habits and exercise frequencies. 
+
+##### Note: Occas = Occasional, Regul = Regular, Freq = Frequent.
+
+```{r}
+library(MASS)
+data(survey)
+survey.sub = survey[complete.cases(survey), ]
+ggplot(survey.sub, aes(x = Pulse, y = Height, color = Smoke, shape = Exer)) + 
+  geom_point(alpha = 4/3, size = 2) + 
+  scale_color_brewer(palette = "Set1") + 
+  xlab("Pulse rate of student (beats per minute)") +
+  ylab("Height of the student in centimetres") +
+  labs(color = "Smoking Frequency", shape = "Exercise Frequency") +
+  ggtitle("Pulse Rate vs Height by smoking and exercise frequency")
+```
+
+##### The second one is the scatterplot of college completion rate vs average total costs for colleges, with the number of undergrduate rollments as size. The graph is based on the information on all US post-secondary schools collected by the Department of Education for the College Scorecard. The graph used the college program completion rate, and average total costs for colleges, as well as the number of undegraduate enrollments. 
+
+```{r}
+library(Lock5Data)
+data(CollegeScores)
+CollegeScores = CollegeScores[complete.cases(CollegeScores), ]
+# Removing a region with only one university.
+CollegeScores = CollegeScores[-1158, ]
+# Graphical summaries
+ggplot(CollegeScores, aes(x=Cost, y=CompRate, size=Enrollment)) +
+  geom_point(shape = 21, alpha = 0.5, fill = "PapayaWhip")  +
+  ggtitle("Completion Rate vs Average total cost for colleges") +
+  xlab("Average total cost for tuition, room, board, etc. in US dollars") +
+  ylab("Completion rate in percentage") +
+  scale_size_continuous(range = c(1, 5), name="Undergrad \n Enrollment") + 
+  theme(aspect.ratio=3/3.8)
+```
