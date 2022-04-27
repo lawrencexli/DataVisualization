@@ -1,8 +1,5 @@
 name: "main_web"
 title: "Lawrence Li"
-domain: lawrencexli.github.io      # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
-url: https://lawrencexli.github.io/DataVisualization/  # the base hostname and protocol for your site, e.g. http://example.com
-baseurl: _site/      # place folder name if the site is served in a subfolder
 description: |
   Main Website
 output_dir: "_site"
