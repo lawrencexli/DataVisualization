@@ -2,7 +2,7 @@ name: "main_web"
 title: "Lawrence Li"
 description: |
   Main Website
-output_dir: "_site"
+output_dir: "docs"
 navbar:
   right:
     - text: "Home"
