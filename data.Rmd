@@ -45,7 +45,7 @@ lm_eqn <- function(){
     as.character(as.expression(eq))
 }
 
-s1 <- ggplot(data_big, aes(x = actualminimumwage2020dollars, 
+ggplot(data_big, aes(x = actualminimumwage2020dollars, 
                            y = Percent.Unemployment.Rate
                            )) + 
   geom_point( color="#69b3a2") +
@@ -55,8 +55,6 @@ s1 <- ggplot(data_big, aes(x = actualminimumwage2020dollars,
   ylab("Percentage Unemployment Rate") +
   ggtitle("Correlation between minimum wage and \n unemployment rate based on \n US states from 1976 to 2020") +
   geom_text(x = 12, y = 15, label = lm_eqn(), parse = TRUE)
-
-s1
 ```
 
 The first visualization aims to find a relationship between the minimum wage (in 2020 US dollars, inflation adjusted) and unemployment rate. A linear regression line is drawn on the scatterplot. The equation and R-squared statistic is shown at the upper-right position of the plot. The linear regression analysis suggested that there is a positive relationship between the minimum wage and unemployment rate. That is, an increase in the minimum wage may increase unemployment rate. 
@@ -121,41 +119,4 @@ The third visualization is a time series of 2 variables: Percentage labor force 
 
 ## Unemployment Rate by State Map
 
-```{r, echo=FALSE, eval=TRUE}
-#year = 2020
-#data_year = data[data$year == year, ]
-
-usg = plot_usmap(data = data, values = "percentunemploymentrate", 
-                 color = "black") + 
-  scale_fill_continuous(low = "white", high = "orange",
-                        name = "Percentage Unemployment Rate",
-                        label = scales::comma) + 
-  theme(legend.position = "right")
-
-ggplotly(usg)
-```
-
-
 ## A Histogram Distribution of Unemployment Rate for States
-
-```{r, echo=FALSE, fig.height=8}
-data_2000 = data_big[data_big$year == 2000, ]
-data_2008 = data_big[data_big$year == 2008, ]
-data_2015 = data_big[data_big$year == 2015, ]
-data_2020 = data_big[data_big$year == 2020, ]
-
-data_selected = rbind(data_2015, data_2000, data_2008, data_2020)
-
-p <- ggplot(data_selected, aes(x = Percent.Unemployment.Rate)) +
-  geom_histogram(binwidth = 0.4) + 
-  scale_y_continuous(breaks = c(0, 2, 4, 6, 8, 10, 12)) +
-  scale_color_ipsum() +
-  scale_fill_ipsum() +
-  facet_wrap(~year, ncol = 1) +
-  ylab("Count") +
-  xlab("Unemployment Rate in Percentage") +
-  ggtitle("Distribution of Unemployment Rates") +
-  theme_ipsum_tw()
-
-p
-```
