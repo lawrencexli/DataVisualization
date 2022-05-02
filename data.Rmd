@@ -19,9 +19,13 @@ library(hrbrthemes)
 library(shiny)
 ```
 
-## Read a csv file as dataset
+## The Story of US Labor Economy over Years
 
-The following dataset is manually collected from Federal Reserve Economic Data (https://fred.stlouisfed.org/), containing a total of 1021 observations regarding the US minimum wage, unemployment rate, and real GDP etc. 
+The labor economy is the study of the labor force as an element in the process of industrial and economical production. The labor force comprises all those who work for gain within the labor market, whether as employees, employers, or as self-employed, but also the unemployed, who are seeking work. 
+
+In my data visualization, I will be tackling how labor economical variables, including unemployment rate, labor participation rate, minimum wage, real GDP per capita, and average hourly wage evolved over the last 40+ years in United States. I will be doing a lot of time-series graphs to show the development of US labor economy from 1976 to near-present years for all 50 states plus District of Columbia.
+
+My dataset is manually collected from Federal Reserve Economic Data (https://fred.stlouisfed.org/), containing a total of 1021 observations regarding the US minimum wage, unemployment rate, and real GDP etc. 
 
 ```{r, echo=FALSE}
 data <- read.csv("data/us_data_2001_2020.csv")
@@ -70,7 +74,6 @@ p1
 
 The first visualization is a time series of 2 variables: Percentage labor force participation and the percentage unemployment rate in US as a whole nation. Users can interact the graph by clicking on the graph itself. At the top-right of the graph, there is a line of colored text showing the month and year you are currently clicking on, and its corresponding labor participation rate and unemployment rate to that particular month and year. Users can also use the slider range controls at the bottom to adjust the month year range, that is, to enlarge or shrink the graph.
 
-
 ## Linear Regression Analysis for Minimum Wage vs. Unemployment Rate
 
 ```{r, echo=FALSE}
@@ -100,7 +103,7 @@ ggplot(data_big, aes(x = actualminimumwage2020dollars,
   geom_text(x = 12, y = 15, label = lm_eqn(), parse = TRUE)
 ```
 
-The second visualization aims to find a relationship between the minimum wage (in 2020 US dollars, inflation adjusted) and unemployment rate. A linear regression line is drawn on the scatterplot. The equation and R-squared statistic is shown at the upper-right position of the plot. The linear regression analysis suggested that there is a positive relationship between the minimum wage and unemployment rate. That is, an increase in the minimum wage may increase unemployment rate. 
+Moving on from the general time series, the second visualization aims to find a relationship between the minimum wage (in 2020 US dollars, inflation adjusted) and unemployment rate. A linear regression line is drawn on the scatterplot. The equation and R-squared statistic is shown at the upper-right position of the plot. The linear regression analysis suggested that there is a positive relationship between the minimum wage and unemployment rate. That is, an increase in the minimum wage may increase unemployment rate. 
 
 ## Time Series Bubbleplot: Unemployment Rate vs. Kaitz Index
 
@@ -116,11 +119,15 @@ v <- ggplot(data, aes(y = percentunemploymentrate, x = kaitz_index, color=state)
 ggplotly(v, height = 500)
 ```
 
-The Kaitz Index is the ratio of the nominal legal minimum wage to average hourly wage adjusted for the industry-level coverage.
+The third visualization aims to find a relationship between unemployment rate and kaitz index, which is the ratio of the nominal legal minimum wage to average hourly wage adjusted for the industry-level coverage. Unlike minimum wage variable, Kaitz index is a better key to measure the employment effect on minimum wage and average hourly wage. I found that throughout the years, there is no significant relationship between unemployment rate and Kaitz index. This is interesting since in the previous visualization I found a positive relationship between unemployment rate and minimum wage. 
 
 ## Unemployment Rate, Labor Participation Rate, and Minimum Wage by State Map
 
+The fourth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by years and states. A US map is visualized with interactions. Users can hover on the map to check the unemployment rate, labor participation rate, or minimum wage of a state. 
+
 ## A Histogram Distribution of Unemployment Rate, Labor Participation Rate, and Minimum Wage 
+
+After the visualizations by state, the fifth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by distributions. For unemployment rate and labor participation rate, I used density plots and histograms. For minimum wage, I used counting distributions because minimum wage is generally decided by state or federal government, which is not a fully dependent variable.
 
 ## Time Series Bubbleplot: Real GDP per capita vs. Average Hourly Wage 
 
