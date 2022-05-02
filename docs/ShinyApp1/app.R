@@ -60,11 +60,7 @@ server <- function(input, output) {
                               label = scales::comma,
                               limits=c(min(data $ Percent.Unemployment.Rate), 
                                        max(data $ Percent.Unemployment.Rate))) + 
-        theme(legend.position = "right",
-              plot.title = element_text(size=20, face="bold",
-                                        family = "Palatino")) +
-        ggtitle("Unemployment Rate by State") 
-        
+        theme(legend.position = "right")
       
       
       ggplotly(x)
@@ -82,10 +78,7 @@ server <- function(input, output) {
                               label = scales::comma,
                               limits=c(min(data $ PercentLaborForceParticipation), 
                                        max(data $ PercentLaborForceParticipation))) + 
-        theme(legend.position = "right",
-              plot.title = element_text(size=20, face="bold",
-                                        family = "Palatino")) +
-        ggtitle("Labor Participation Rate by State") 
+        theme(legend.position = "right")
       
       
       ggplotly(y)
@@ -103,10 +96,8 @@ server <- function(input, output) {
                               label = scales::comma,
                               limits=c(min(data $ actualminimumwage2020dollars), 
                                        max(data $ actualminimumwage2020dollars))) + 
-        theme(legend.position = "right",
-              plot.title = element_text(size=20, face="bold",
-                                        family = "Palatino")) +
-        ggtitle("Actual Minimum Wage by State") 
+        theme(legend.position = "right") + 
+        labs(caption="H")
       
       
       ggplotly(z)
