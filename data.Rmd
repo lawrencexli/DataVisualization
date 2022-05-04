@@ -123,11 +123,27 @@ The third visualization aims to find a relationship between unemployment rate an
 
 ## Unemployment Rate, Labor Participation Rate, and Minimum Wage by State Map
 
+<center>
+
+<iframe src ="https://rconnect.bucknell.edu/content/8b0db7c3-1bf9-4090-831d-a88179a632c7"
+  style="border: none; width: 100%; height: 800px;"/>
+</iframe>
+
+</center>
+
 The fourth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by years and states. A US map is visualized with interactions. Users can hover on the map to check the unemployment rate, labor participation rate, or minimum wage of a state. 
 
 ## A Histogram Distribution of Unemployment Rate, Labor Participation Rate, and Minimum Wage 
 
-After the visualizations by state, the fifth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by distributions. For unemployment rate and labor participation rate, I used density plots and histograms. For minimum wage, I used counting distributions because minimum wage is generally decided by state or federal government, which is not a fully dependent variable.
+<center>
+
+<iframe src ="https://rconnect.bucknell.edu/content/59049d61-5b36-4b92-89bd-68dd112d15c2"
+  style="border: none; width: 100%; height: 800px;"/>
+</iframe>
+
+</center>
+
+After the visualizations by state, the fifth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by distributions. For all three variables, I used counting distributions. 
 
 ## Time Series Bubbleplot: Real GDP per capita vs. Average Hourly Wage 
 
