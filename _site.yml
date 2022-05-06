@@ -11,9 +11,9 @@ navbar:
       href: about.html
     - text: "US Labor Economy Study"
       href: data.html
-    - text: "Github Page"
+    - text: "My Github"
       href: https://github.com/lawrencexli/
-    - text: "LinkedIn Page"
+    - text: "My LinkedIn"
       href: https://www.linkedin.com/in/lawrencegz/
   logo:
     image: resources/logo.jpg
