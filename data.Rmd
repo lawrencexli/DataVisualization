@@ -72,7 +72,7 @@ p1 <- dygraph(don,
 p1
 ```
 
-The first visualization is a time series of 2 variables: Percentage labor force participation and the percentage unemployment rate in US as a whole nation. Users can interact the graph by clicking on the graph itself. At the top-right of the graph, there is a line of colored text showing the month and year you are currently clicking on, and its corresponding labor participation rate and unemployment rate to that particular month and year. Users can also use the slider range controls at the bottom to adjust the month year range, that is, to enlarge or shrink the graph.
+The first visualization is a time series regarding 2 variables: Percentage labor force participation and the percentage unemployment rate in US as a whole nation. It is an overview of my dataset and it is a great starting point. Users can interact the graph by clicking on the graph itself. At the top-right of the graph, there is a line of colored text showing the month and year you are currently clicking on, and its corresponding labor participation rate and unemployment rate to that particular month and year. Users can also use the slider range controls at the bottom to adjust the month year range, that is, to enlarge or shrink the graph. 
 
 ## Linear Regression Analysis for Minimum Wage vs. Unemployment Rate
 
@@ -103,7 +103,7 @@ ggplot(data_big, aes(x = actualminimumwage2020dollars,
   geom_text(x = 12, y = 15, label = lm_eqn(), parse = TRUE)
 ```
 
-Moving on from the general time series, the second visualization aims to find a relationship between the minimum wage (in 2020 US dollars, inflation adjusted) and unemployment rate. A linear regression line is drawn on the scatterplot. The equation and R-squared statistic is shown at the upper-right position of the plot. The linear regression analysis suggested that there is a positive relationship between the minimum wage and unemployment rate. That is, an increase in the minimum wage may increase unemployment rate. 
+Moving on from the overview time series, the second visualization aims to find a relationship between the minimum wage (in 2020 US dollars, inflation adjusted) and unemployment rate. A linear regression line is drawn on the scatterplot. The equation and R-squared statistic is shown at the upper-right position of the plot. The linear regression analysis suggested that there is a positive relationship between the minimum wage and unemployment rate. That is, an increase in the minimum wage may increase unemployment rate. 
 
 ## Time Series Bubbleplot: Unemployment Rate vs. Kaitz Index
 
@@ -119,7 +119,7 @@ v <- ggplot(data, aes(y = percentunemploymentrate, x = kaitz_index, color=state)
 ggplotly(v, height = 500)
 ```
 
-The third visualization aims to find a relationship between unemployment rate and kaitz index, which is the ratio of the nominal legal minimum wage to average hourly wage adjusted for the industry-level coverage. Unlike minimum wage variable, Kaitz index is a better key to measure the employment effect on minimum wage and average hourly wage. I found that throughout the years, there is no significant relationship between unemployment rate and Kaitz index. This is interesting since in the previous visualization I found a positive relationship between unemployment rate and minimum wage. 
+Similar to the second visualization, the third visualization aims to find a relationship between unemployment rate and kaitz index, which is the ratio of the nominal legal minimum wage to average hourly wage adjusted for the industry-level coverage. Unlike minimum wage variable, Kaitz index is a better key to measure the employment effect on minimum wage and average hourly wage. I found that throughout the years, there is no significant relationship between unemployment rate and Kaitz index. This is interesting since in the previous visualization I found a positive relationship between unemployment rate and minimum wage. 
 
 ## Unemployment Rate, Labor Participation Rate, and Minimum Wage by State Map
 
@@ -131,7 +131,7 @@ The third visualization aims to find a relationship between unemployment rate an
 
 </center>
 
-The fourth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by years and states. A US map is visualized with interactions. Users can hover on the map to check the unemployment rate, labor participation rate, or minimum wage of a state. 
+Let's explore more about labor economical variables regarding state as the geographical category, the fourth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by years and states. A US map is visualized with interactions. Users can hover on the map to check the unemployment rate, labor participation rate, or minimum wage of a state. Users can also use the slider to adjust the year. 
 
 ## A Histogram Distribution of Unemployment Rate, Labor Participation Rate, and Minimum Wage 
 
@@ -143,7 +143,7 @@ The fourth visualization aims to display the unemployment rate, labor participat
 
 </center>
 
-After the visualizations by state, the fifth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by distributions. For all three variables, I used counting distributions. 
+Continuing from the visualizations by state, the fifth visualization aims to display the unemployment rate, labor participation rate, and minimum wage by counting distributions. Users can also use the slider to adjust the year. 
 
 ## Time Series Bubbleplot: Real GDP per capita vs. Average Hourly Wage 
 
@@ -159,4 +159,4 @@ p <- ggplot(data, aes(ahw2020, real_gdp_per_capita_2020, color=state)) +
 ggplotly(p, height = 500)
 ```
 
-The last visualization is also a scatterplot between the real GDP per capita and average hourly wage on 50 US states plus District of Columbia. Each dot has a unique color that represents a US state/region. The size of the dot represents the resident population of that state. In addition, a time slider is available for user interaction. This time slider can let users to choose the year between 2001 and 2020. Users can also click the **Play** button to check out the animation of the plot.  
+After we have throughly explored the three variables above, it's time to switch to another 2 labor economical variables. Same as the third visualization, the last visualization is also a scatterplot between the real GDP per capita and average hourly wage on 50 US states plus District of Columbia. Each dot has a unique color that represents a US state/region. The size of the dot represents the resident population of that state. In addition, a time slider is available for user interaction. This time slider can let users to choose the year between 2001 and 2020. Users can also click the **Play** button to check out the animation of the plot. I found that there is a positive relationship between real GDP per capita and Average Hourly Wage, and they have both increased throughout the years in general. 
